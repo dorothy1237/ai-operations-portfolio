@@ -1,0 +1,20 @@
+.DS_Store
+
+# Keep the published portfolio self-contained without storing unused source exports.
+assets/videos/*.mp4
+assets/videos/portfolio/*
+!assets/videos/portfolio/香水宣传片-web.mp4
+!assets/videos/portfolio/汽水广告宣传片-web.mp4
+!assets/videos/portfolio/巧克力宣传已改动.mp4
+!assets/videos/portfolio/【短片】邻家妹妹-web.mp4
+!assets/videos/portfolio/国王.mp4
+!assets/videos/portfolio/9月2日素材_副本-web.mp4
+!assets/videos/portfolio/黑红动漫风.mp4
+!assets/videos/portfolio/0828IG-web.mp4
+!assets/videos/portfolio/08eb672e-a488-43dc-b059-8c88a8ec3f38_generated-web.mp4
+!assets/videos/portfolio/1028.sd-web.mp4
+!assets/videos/portfolio/1030  4k-web.mp4
+!assets/videos/portfolio/2e54a2f2-4dd4-40b9-9c42-6222e22db405_generated-web.mp4
+!assets/videos/portfolio/36ae28a1-2fad-4cd9-8dbe-96ed3cd05213_generated-web.mp4
+!assets/videos/portfolio/Alice-web.mp4
+!assets/videos/portfolio/08482439-58ba-4627-9319-86dc6d6697d7_generated-web.mp4
