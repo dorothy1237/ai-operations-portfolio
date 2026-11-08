@@ -16,11 +16,6 @@
 
 首页封面支持左右按钮、圆点、触屏滑动和自动轮播；鼠标悬停或键盘聚焦时会暂停。往下滚动时内容区逐步出现。作品环上的卡片可点击进入项目或具体视频；在空白处拖动或点左右按钮切换作品。视频页支持分类筛选、播放与全屏观看。
 
-## 获取个人网址
+## GitHub 仓库
 
-1. 登录 GitHub，新建公开仓库，推荐命名为 `你的GitHub用户名.github.io`。
-2. 将本目录的文件上传到仓库根目录并提交到 `main` 分支。
-3. 在仓库的 `Settings → Pages` 中选择 `Deploy from a branch`，分支选 `main`，目录选 `/ (root)`。
-4. 发布后网址是 `https://你的GitHub用户名.github.io/`。如果仓库使用其他名字，例如 `portfolio`，网址会是 `https://你的GitHub用户名.github.io/portfolio/`。
-
-目前没有 GitHub 用户名，页面因此没有放虚构的网址。确认用户名后可以在 `data.js` 更新 `github` 和 `website` 字段，再把网址加入页面。
+私有仓库：`https://github.com/dorothy1237/ai-operations-portfolio`。登录该账号后可下载 ZIP 或克隆完整离线副本。仓库保持私有，当前没有公开的 GitHub Pages 地址。若以后决定公开展示，再根据需要设置 Pages，并在 `data.js` 更新 `github` 和 `website` 字段。
