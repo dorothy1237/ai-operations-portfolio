@@ -50,12 +50,6 @@ body :where(.hero,.profile-band,.modular,.tile-section,.closing,.video-hero,.vid
 .capability-card{min-height:410px;background:#151515;color:#fff!important;border:1px solid #222;border-radius:3px;box-shadow:none}
 .capability-card:hover{transform:translateY(-5px);box-shadow:0 18px 30px #0003}
 .capability-visual{flex:0 0 190px;background-size:cover;background-position:center}
-.capability-card:nth-child(1) .capability-visual{background-image:url('assets/cun/halloween-campaign.jpg')}
-.capability-card:nth-child(2) .capability-visual{background-image:url('assets/posters/portfolio/9月2日素材_副本.mp4.png')}
-.capability-card:nth-child(3) .capability-visual{background-image:url('assets/cun/ip-02.jpg')}
-.capability-card:nth-child(4) .capability-visual{background-image:url('assets/posters/portfolio/香水宣传片.mp4.png')}
-.capability-card:nth-child(5) .capability-visual{background-image:url('assets/posters/portfolio/1030  4k.mp4.png')}
-.capability-card:nth-child(6) .capability-visual{background-image:url('assets/posters/portfolio/0828IG.MP4.png')}
 .capability-visual::before{display:none}
 .capability-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#0007,transparent 50%,#0005)}
 .capability-visual>span{top:14px;left:14px;background:#fff;color:#111!important}

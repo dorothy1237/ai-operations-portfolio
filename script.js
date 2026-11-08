@@ -1,6 +1,13 @@
 (() => {
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(pointer: fine)').matches;
+  const loadWhenNear = (element, load) => {
+    if (!('IntersectionObserver' in window)) { load(); return; }
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((entry) => entry.isIntersecting)) { load(); observer.disconnect(); }
+    }, { rootMargin: '200px' });
+    observer.observe(element);
+  };
   document.querySelectorAll('#year').forEach((node) => { node.textContent = new Date().getFullYear(); });
 
   const menuButton = document.querySelector('.menu-toggle');
@@ -27,6 +34,11 @@
     let touchStart = null;
     const show = (next) => {
       current = (next + slides.length) % slides.length;
+      const activeImage = slides[current].querySelector('img[data-src]');
+      if (activeImage) {
+        activeImage.src = activeImage.dataset.src;
+        delete activeImage.dataset.src;
+      }
       slides.forEach((slide, index) => {
         const active = index === current;
         slide.classList.toggle('is-active', active);
@@ -63,6 +75,7 @@
 
   const capabilityGrid = document.querySelector('#capability-grid');
   if (capabilityGrid && window.PORTFOLIO_DATA) {
+    const capabilityImages = ['assets/cun/halloween-campaign.jpg', 'assets/posters/portfolio/9月2日素材_副本.mp4.png', 'assets/cun/ip-02.jpg', 'assets/posters/portfolio/香水宣传片.mp4.png', 'assets/posters/portfolio/1030  4k.mp4.png', 'assets/posters/portfolio/0828IG.MP4.png'];
     window.PORTFOLIO_DATA.capabilities.forEach((item, index) => {
       const card = document.createElement('article');
       card.className = 'capability-card';
@@ -71,6 +84,7 @@
       card.querySelector('p').textContent = item.description;
       item.tags.forEach((tag) => { const el = document.createElement('span'); el.textContent = tag; card.querySelector('.capability-tags').append(el); });
       capabilityGrid.append(card);
+      loadWhenNear(card, () => { card.querySelector('.capability-visual').style.backgroundImage = `url("${capabilityImages[index]}")`; });
     });
   }
 
@@ -143,9 +157,9 @@
   const tileGrid = document.querySelector('#tile-grid');
   if (tileGrid) {
     const visuals = ['assets/cun/halloween-campaign.jpg', 'assets/posters/perfume.png', 'assets/cun/ip-01.jpg', 'assets/posters/soda.png', 'assets/cun/ip-02.jpg', 'assets/posters/short-film.png', 'assets/cun/ip-03.jpg', 'assets/posters/alice.png', 'assets/cun/ip-04.jpg'];
-    [...tileGrid.children].forEach((tile, index) => {
-      tile.style.setProperty('--tilt', `${(index % 3 - 1) * 2}deg`);
-      tile.style.setProperty('--tile-image', `url("${visuals[index % visuals.length]}")`);
+    [...tileGrid.children].forEach((tile, index) => { tile.style.setProperty('--tilt', `${(index % 3 - 1) * 2}deg`); });
+    loadWhenNear(tileGrid, () => {
+      [...tileGrid.children].forEach((tile, index) => { tile.style.setProperty('--tile-image', `url("${visuals[index % visuals.length]}")`); });
     });
     if (finePointer && !reduceMotion) tileGrid.addEventListener('pointermove', (event) => {
       const rect = tileGrid.getBoundingClientRect();
@@ -191,7 +205,7 @@
       videos.filter((video) => activeCategory === '全部' || video.category === activeCategory).forEach((video) => {
         const index = videos.indexOf(video);
         const item = document.createElement('button'); item.type = 'button'; item.className = 'video-item'; item.dataset.id = video.id;
-        item.innerHTML = `<img src="${video.poster}" alt=""><span><small>${String(index + 1).padStart(2, '0')} / ${String(videos.length).padStart(2, '0')} · ${video.category}</small><strong></strong><em></em></span><b aria-hidden="true">↗</b>`;
+        item.innerHTML = `<img src="${video.poster}" alt="" loading="lazy" decoding="async"><span><small>${String(index + 1).padStart(2, '0')} / ${String(videos.length).padStart(2, '0')} · ${video.category}</small><strong></strong><em></em></span><b aria-hidden="true">↗</b>`;
         item.querySelector('strong').textContent = video.title; item.querySelector('em').textContent = video.type;
         item.addEventListener('click', () => choose(video.id, true)); list.append(item);
       });
@@ -208,7 +222,8 @@
     });
     const choose = (id, play = false) => {
       const video = videos.find((item) => item.id === id) || videos[0];
-      videoPlayer.pause(); videoPlayer.src = video.file; videoPlayer.poster = video.poster; videoPlayer.load();
+      videoPlayer.pause(); videoPlayer.src = video.file; videoPlayer.poster = video.poster;
+      if (play) videoPlayer.load();
       title.textContent = video.title; type.textContent = video.type;
       if (activeCategory !== '全部' && activeCategory !== video.category) {
         activeCategory = video.category;
