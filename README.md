@@ -18,4 +18,6 @@
 
 ## GitHub 仓库
 
-私有仓库：`https://github.com/dorothy1237/ai-operations-portfolio`。登录该账号后可下载 ZIP 或克隆完整离线副本。仓库保持私有，当前没有公开的 GitHub Pages 地址。若以后决定公开展示，再根据需要设置 Pages，并在 `data.js` 更新 `github` 和 `website` 字段。
+公开展示网址：`https://dorothy1237.github.io/ai-operations-portfolio/`。
+
+GitHub 仓库：`https://github.com/dorothy1237/ai-operations-portfolio`。任何人都可以在线浏览作品集，也可以下载 ZIP 或克隆完整离线副本。页面中的联系方式和简历随仓库公开。
